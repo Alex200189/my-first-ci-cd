@@ -1,0 +1,34 @@
+name: Run Tests
+
+# Когда запускать:
+# - при пуше в ветку main
+# - при создании Pull Request в main
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Что именно делать
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Виртуальная машина с Ubuntu
+
+    steps:
+      # 1. Скачать код из репозитория
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Установить Python
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # 3. Установить зависимости
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # 4. Запустить тесты
+      - name: Run tests
+        run: pytest test_calc.py -v
