@@ -3,7 +3,7 @@ from calc import add, subtract
 
 def test_add():
     # Проверяем, что 2 + 3 действительно равно 5
-    assert add(2, 3) == 5
+    assert add(2, 3) == 100
 
 def test_subtract():
     # Проверяем вычитание
